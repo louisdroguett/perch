@@ -1,0 +1,8 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|  
+  config.vm.box = "hashicorp/precise64"
+  config.vm.provision "docker"
+  #config.vm.provision "shell", inline: "ps aux | grep 'sshd:' | awk '{print $2}' | xargs kill"
+  config.vm.network :forwarded_port, guest: 8300, host: 8300
+end
